@@ -12,7 +12,8 @@ namespace VeryBigSum
         static void Main(string[] args)
         {
             //PlusMinus(new[]{ -4, 3, -9, 0, 4, 1 });
-            StairCase(100);
+            //StairCase(100);
+            MiniMax(new[] { 256741038, 623958417, 467905213, 714532089, 938071625 });
 
             Console.ReadKey();
         }
@@ -52,6 +53,26 @@ namespace VeryBigSum
                 string ending = new String('#',i);
                 Console.WriteLine(ending.PadLeft(n));
             }
+        }
+
+        static void MiniMax(int[] arr)
+        {
+            var arrLength = arr.Length;
+            Array.Sort<int>(arr);
+
+            long max4Sum = 0;
+            long min4Sum = 0;
+
+            for (var i = 0; i < 4; i++)
+            {
+                checked
+                {
+                    min4Sum += arr[i];
+                    var revInd = arrLength - i - 1;
+                    max4Sum += arr[revInd];
+                }
+            }
+            Console.WriteLine($"{min4Sum} {max4Sum}");
         }
     }
 }
